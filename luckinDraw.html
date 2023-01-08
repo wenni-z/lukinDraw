@@ -384,7 +384,8 @@
 					contentType: "application/x-www-form-urlencoded",
 					// contentType: "application/json; charset=utf-8",
 					async: true,
-					success: function(res) {
+					success: function(resString) {
+						const res = JSON.parse(resString)
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
@@ -427,12 +428,13 @@
 					"sig": 'test'
 				}
 				$.ajax({
-					url: baseUrl + '/submitCode',
+					url: baseUrl + '/VerifyCode',
 					type: 'get',
 					data: obj2,
 					contentType: "application/x-www-form-urlencoded",
 					async: false,
-					success: function(res) {
+					success: function(resString) {
+						const res = JSON.parse(resString)
 						if (res.resultCode == 0) {
 							$(".tan_box").hide();
 							$('.success_box').show()
