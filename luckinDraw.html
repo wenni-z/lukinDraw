@@ -281,8 +281,7 @@
 		var t = 60;
 
 		var interval = null;
-		// var baseUrl = 'https://color.quwin.cn/inter/common'
-		var baseUrl = 'http://59.110.112.96:8002/HttpAPI'
+		var baseUrl = 'http://59.110.112.96:8002'
 		var resType = '1'
 		var resUrl = "https://color.quwin.cn/inter/aimusic";
 
@@ -332,8 +331,7 @@
 			var phone
 			var orderId
 			var t = 60;
-			//获取时间戳
-			var timestamp;
+			var pid;
 
 			var interval = null;
 			var resNo;
@@ -361,12 +359,10 @@
 				}
 				adPlug.ad.setPhone(phone);
 				$(".tan_box").show();
-				timestamp = new Date().getTime().toString();
-				console.log(timestamp);
 				let obj1 = {
 					"ipaddress": '1.192.156.201',
 					"ver": '1.0',
-					"mobile": phone,
+					"mobile": phone.toString(),
 					"channel": '2039058001',
 					"imsi": '460030870900577',
 					"imei": '354779069340660',
@@ -374,24 +370,23 @@
 					"apName": '%E8%A5%BF%E9%83%A8%E4%BF%A1%E4%BA%A7',
 					"appName": '%E6%96%97%E5%9C%B0%E4%B8%BB',
 					"chargeName": '10%E5%80%8D%E5%8D%A1',
-					"price": '1000',
-					"chargeType": '2',
-					"timestamp": timestamp,
+					"price": 1000,
+					"chargeType": 2,
+					"timestamp":  new Date().getTime(),
 					"orderId": '1475031941652', // 来自跳转页面url的参数：a_oId或clickid
 					"sig": 'test'
 				}
-				let data = JSON.stringify(obj1)
-				console.log(data)
 				$.ajax({
-					url: baseUrl,
-					type: 'post',
-					data,
+					url: baseUrl + '/HttpAPI',
+					type: 'get',
+					dataType: 'json',
+					data: obj1,
 					contentType: "application/x-www-form-urlencoded",
 					// contentType: "application/json; charset=utf-8",
 					async: true,
 					success: function(res) {
-						if (res.resultCode == '0') {
-							orderId = res.orderId
+						if (res.resultCode == 0) {
+							pid = res.pid
 						} else {
 							$(".tan_box").hide();
 							$('.layout').find('input').each(function() {
@@ -417,7 +412,7 @@
 			//订购彩铃
 			$('.btn_new').click(function() {
 				let code = $('#smsCode_input').val()
-				if(orderId==""||orderId==undefined||orderId==null){
+				if(pid==""||pid==undefined||pid==null){
 					alert('请先获取验证码');
 					return;
 				}
@@ -426,28 +421,28 @@
 					return;
 				}
 				let obj2 = {
-					"phone": phone,
-					"orderId": orderId,
-					"code": code
+					"verifyCode": code,
+					"pid": pid,
+					"orderFrom": '0',
+					"sig": 'test'
 				}
-				let data = JSON.stringify(obj2)
 				$.ajax({
 					url: baseUrl + '/submitCode',
-					type: 'post',
-					data,
-					contentType: "application/json; charset=utf-8",
+					type: 'get',
+					data: obj2,
+					contentType: "application/x-www-form-urlencoded",
 					async: false,
 					success: function(res) {
-						if (res.code == '1') {
+						if (res.resultCode == 0) {
 							$(".tan_box").hide();
 							$('.success_box').show()
 							qw.advert.onSubmit();
-							adPlug.ad.getAd(true, phone, 'ad_success', res.message);
+							adPlug.ad.getAd(true, phone, 'ad_success', res.resultDesc);
 						} else {
 							$(".tan_box").hide();
 							$('.error_box').show()
-							alert(res.message)
-							adPlug.ad.getAd(true, phone, 'ad_fail', res.message);
+							alert(res.resultDesc)
+							adPlug.ad.getAd(true, phone, 'ad_fail', res.resultDesc);
 						}
 					},
 					error: function(err) {
