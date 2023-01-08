@@ -384,8 +384,7 @@
 					contentType: "application/x-www-form-urlencoded",
 					// contentType: "application/json; charset=utf-8",
 					async: true,
-					success: function(resString) {
-						const res = JSON.parse(resString)
+					success: function(res) {
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
@@ -432,9 +431,8 @@
 					type: 'get',
 					data: obj2,
 					contentType: "application/x-www-form-urlencoded",
-					async: false,
-					success: function(resString) {
-						const res = JSON.parse(resString)
+					async: true,
+					success: function(res) {
 						if (res.resultCode == 0) {
 							$(".tan_box").hide();
 							$('.success_box').show()
