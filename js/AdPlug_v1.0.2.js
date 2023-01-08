@@ -1,6 +1,7 @@
 var adPlug = new Object();
 
-adPlug.fingerprint = "https://down.quwin.cn/unvip/fingerprint.js";
+adPlug.fingerprint = "resources/unvip/fingerprint.js";
+//TO-DO: Change domain
 adPlug.domain = "https://color.quwin.cn/clad/";
 // adPlug.domain = "http://localhost:9091/";
 adPlug.uid = "";
@@ -250,7 +251,7 @@ adPlug.ad = {
 		dialogBg.style.height = "15rem";
 		dialogBg.style.top = "20vh";
 		dialogBg.style.left = "5%";
-		dialogBg.style.backgroundImage = "url(https://down.quwin.cn/ad_resource/ad_index_bg.png)";
+		dialogBg.style.backgroundImage = "url('../resources/ad_resource/ad_index_bg.png')";
 		dialogBg.style.backgroundSize = "100% auto";
 		dialogBg.style.backgroundRepeat = "no-repeat";
 		dialogBg.style.textAlign = "center";
@@ -313,7 +314,7 @@ adPlug.ad = {
 		closeBnt.style.height = "1.3rem";
 		closeBnt.style.top = "12vh";
 		closeBnt.style.right = "1rem";
-		closeBnt.style.backgroundImage = "url(https://down.quwin.cn/ad_resource/close_bnt.png)";
+		closeBnt.style.backgroundImage = "url('../resources/ad_resource/close_bnt.png')";
 		closeBnt.style.backgroundSize = "100% 100%";
 		closeBnt.style.backgroundRepeat = "no-repeat";
 		closeBnt.addEventListener("click", function() {
@@ -327,7 +328,7 @@ adPlug.ad = {
 		dialogBg.style.height = "15rem";
 		dialogBg.style.top = "22vh";
 		dialogBg.style.left = "5%";
-		dialogBg.style.backgroundImage = "url(https://down.quwin.cn/ad_resource/ad_index_bg.png)";
+		dialogBg.style.backgroundImage = "url('../resources/ad_resource/ad_index_bg.png')";
 		dialogBg.style.backgroundSize = "100% auto";
 		dialogBg.style.backgroundRepeat = "no-repeat";
 		dialogBg.style.textAlign = "center";
@@ -367,7 +368,7 @@ adPlug.ad = {
 		adBnt.style.lineHeight = '2rem';
 		adBnt.style.borderRadius = "2rem"
 		adBnt.style.color = "#F91F02";
-		adBnt.style.backgroundImage = "url(https://down.quwin.cn/ad_resource/bnt_bg.png)";
+		adBnt.style.backgroundImage = "url('../resources/ad_resource/bnt_bg.png')";
 		adBnt.style.backgroundSize = "100% 100%";
 		adBnt.style.backgroundRepeat = "no-repeat";
 		adBnt.style.cursor = "pointer"
@@ -407,7 +408,7 @@ adPlug.ad = {
 		dialogPoint.style.bottom = "1.5rem";
 		dialogPoint.style.height = "2.8rem";
 		dialogPoint.style.width = "4rem";
-		dialogPoint.style.backgroundImage = "url(https://down.quwin.cn/ad_resource/point.gif)";
+		dialogPoint.style.backgroundImage = "url('../resources/ad_resource/point.gif')";
 		dialogPoint.style.backgroundSize = "100% auto";
 		dialogPoint.style.backgroundRepeat = "no-repeat";
 		dialogPoint.addEventListener("click", function() {

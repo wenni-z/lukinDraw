@@ -10,7 +10,7 @@ body{
 }
 .hdgz_bnt{
 	position: absolute;
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/hdgz.png);
+	background-image: url('../resources/cl/v2.6.7/hdgz.png');
 	background-size: 100% 100%;
 	left: 0rem;
 	top: 0.5rem;
@@ -24,7 +24,7 @@ body{
 .header{
 	width: 100%;
 	height: 47.8rem;
-	background-image: url(https://down.quwin.cn/cl/v2.7.1/bg1.jpg),url(https://down.quwin.cn/cl/v2.7.1/bg2.jpg);
+	background-image: url('../resources/cl/v2.7.1/bg1.jpg'),url('../resources/cl/v2.7.1/bg2.jpg');
 	background-position: 0 0,0 25rem;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -65,7 +65,7 @@ body{
 	height: 38.9rem;
 }
 .sms_input{
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/main_input_bg.png);
+	background-image: url('../resources/cl/v2.6.7/main_input_bg.png');
 	background-position: 0 0,0 19.3rem;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -79,7 +79,7 @@ body{
 	margin: 0 auto ;
 	width: 65%;
 	height: 2.1rem;
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/input_bg.png);
+	background-image: url('../resources/cl/v2.6.7/input_bg.png');
 	border-radius: 2rem;
 	background-size: 100% 100%;
 	background-color: #FFF;
@@ -117,7 +117,7 @@ input::-webkit-input-placeholder {
 	margin: 0rem auto;
 	width:100%;
 	height: 2.8rem;
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/submit_bnt.gif);
+	background-image: url('../resources/cl/v2.6.7/submit_bnt.gif');
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 }
@@ -125,7 +125,7 @@ input::-webkit-input-placeholder {
 	margin: 0rem auto;
 	width:70%;
 	height: 2.8rem;
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/submit_input_bnt.png);
+	background-image: url('../resources/cl/v2.6.7/submit_input_bnt.png');
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 }
@@ -246,7 +246,7 @@ input::-webkit-input-placeholder {
 .tbody{
 	width:100%;
 	min-height: 10rem;
-	background-image: url(https://down.quwin.cn/cl/v2.7.1/bg3.jpg);
+	background-image: url('../resources/cl/v2.7.1/bg3.jpg');
 	background-repeat:repeat-y;
 	background-size: 100% auto;
 }
@@ -261,7 +261,7 @@ input::-webkit-input-placeholder {
 	margin-bottom: 0.5rem;
 }
 .qy_foot_box{
-	background-image: url(https://down.quwin.cn/cl/v2.7.1/qy_bnt.png);
+	background-image: url('../resources/cl/v2.7.1/qy_bnt.png');
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	width: 50%;
@@ -269,7 +269,7 @@ input::-webkit-input-placeholder {
 	margin: 0.5rem auto;
 }
 .kf_foot_box{
-	background-image: url(https://down.quwin.cn/cl/v2.7.1/kf_bg.png);
+	background-image: url('../resources/cl/v2.7.1/kf_bg.png');
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	width: 85%;
@@ -324,7 +324,7 @@ input::-webkit-input-placeholder {
 .res_foot{
 	position: relative;
 	color: rgba(0,0,0,0.8);
-	background-image: url(https://down.quwin.cn/cl/v2.6.7/bg4.jpg);
+	background-image: url('../resources/cl/v2.6.7/bg4.jpg');
 	background-size: 100% auto;
 	background-repeat: no-repeat;
 	font-size: 0.6rem;

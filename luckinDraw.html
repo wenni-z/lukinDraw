@@ -332,6 +332,8 @@
 			var phone
 			var orderId
 			var t = 60;
+			//获取时间戳
+			var timestamp;
 
 			var interval = null;
 			var resNo;
@@ -359,13 +361,24 @@
 				}
 				adPlug.ad.setPhone(phone);
 				$(".tan_box").show();
+				timestamp = new Date().getTime().toString();
+				console.log(timestamp);
 				let obj1 = {
-					// "phone": phone,
-					// "planId": planId,
-					// "resNo": resNo,
-					// "queryString": queryString,
-					// 'uid': uid
-					ipaddress: '1.192.156.201'
+					"ipaddress": '1.192.156.201',
+					"ver": '1.0',
+					"mobile": phone,
+					"channel": '2039058001',
+					"imsi": '460030870900577',
+					"imei": '354779069340660',
+					"phoneModel": 'MI+4LTE',
+					"apName": '%E8%A5%BF%E9%83%A8%E4%BF%A1%E4%BA%A7',
+					"appName": '%E6%96%97%E5%9C%B0%E4%B8%BB',
+					"chargeName": '10%E5%80%8D%E5%8D%A1',
+					"price": '1000',
+					"chargeType": '2',
+					"timestamp": timestamp,
+					"orderId": '1475031941652', // 来自跳转页面url的参数：a_oId或clickid
+					"sig": 'test'
 				}
 				let data = JSON.stringify(obj1)
 				console.log(data)
@@ -374,21 +387,23 @@
 					type: 'post',
 					data,
 					contentType: "application/x-www-form-urlencoded",
+					// contentType: "application/json; charset=utf-8",
 					async: true,
 					success: function(res) {
-						if (res.code == '10032') {
-							orderId = res.data.orderId
+						if (res.resultCode == '0') {
+							orderId = res.orderId
 						} else {
 							$(".tan_box").hide();
 							$('.layout').find('input').each(function() {
 								this.value = ''
 							})
-							if (res.code == "0" || res.code == 0 || res.code == "-104" || res
-								.code == -104) {
-								alert(res.message)
-							} else {
-								adPlug.ad.getAd(true, phone, 'ad_index', res.message);
-							}
+							// if (res.code == "0" || res.code == 0 || res.code == "-104" || res
+							// 	.code == -104) {
+							// 	alert(res.resultDesc)
+							// } else {
+							// 	adPlug.ad.getAd(true, phone, 'ad_index', res.resultDesc);
+							// }
+							alert(res.resultDesc)
 						}
 					},
 					error: function(err) {
