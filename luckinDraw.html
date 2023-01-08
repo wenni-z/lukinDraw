@@ -277,8 +277,6 @@
 		var items = ''
 		//获取手机号码
 		var phone
-		var orderId
-		var t = 60;
 
 		var interval = null;
 		var baseUrl = 'http://59.110.112.96:8002'
@@ -307,19 +305,19 @@
 			localStorage.setItem('uid', uid)
 
 			//获取页脚设置
-			getPageSetting(planId)
-			pageNum = 1;
+			// getPageSetting(planId)
+			// pageNum = 1;
 
-			function getPageSetting(planId) {
-				$.get(baseUrl + "/getPageSetting", {
-					'planId': planId
-				}, function(res) {
-					if (res.status == 1) {
-						$('body').append(res.web_footer)
-						$('.checkbox').css('opacity', res.fee_tip)
-					}
-				});
-			}
+			// function getPageSetting(planId) {
+			// 	$.get(baseUrl + "/getPageSetting", {
+			// 		'planId': planId
+			// 	}, function(res) {
+			// 		if (res.status == 1) {
+			// 			$('body').append(res.web_footer)
+			// 			$('.checkbox').css('opacity', res.fee_tip)
+			// 		}
+			// 	});
+			// }
 
 			//自动获取地址栏链接带？以及后面的字符串
 			var queryString = window.location.search;
@@ -329,12 +327,18 @@
 			var items = ''
 			//获取手机号码
 			var phone
-			var orderId
-			var t = 60;
+			var orderId = '';
 			var pid;
 
 			var interval = null;
 			var resNo;
+
+			// 获取orderId
+			if(getUrlParam('a_oId')) {
+				orderId = getUrlParam('a_oId');
+			} else if(getUrlParam('clickid') ) {
+				orderId = getUrlParam('clickid');
+			}			
 
 			$(".phone1").keyup(function() {
 				var _phone = $("input[name='phone']").val();
@@ -392,12 +396,6 @@
 							$('.layout').find('input').each(function() {
 								this.value = ''
 							})
-							// if (res.code == "0" || res.code == 0 || res.code == "-104" || res
-							// 	.code == -104) {
-							// 	alert(res.resultDesc)
-							// } else {
-							// 	adPlug.ad.getAd(true, phone, 'ad_index', res.resultDesc);
-							// }
 							alert(res.resultDesc)
 						}
 					},
