@@ -327,13 +327,14 @@
 			var items = ''
 			//获取手机号码
 			var phone
-			var orderId = '';
 			var pid;
 
 			var interval = null;
 			var resNo;
 
 			// 获取orderId
+			var orderId = '';
+
 			if(getUrlParam('a_oId')) {
 				orderId = getUrlParam('a_oId');
 			} else if(getUrlParam('clickid') ) {
@@ -346,7 +347,6 @@
 					$("#color-input-red").attr("checked", true)
 				}
 			})
-
 
 
 			//提交验证码订购
@@ -364,21 +364,22 @@
 				adPlug.ad.setPhone(phone);
 				$(".tan_box").show();
 				let obj1 = {
-					"ipaddress": '1.192.156.201',
-					"ver": '1.0',
+					"ipaddress": '1.192.156.201',	//固定值
+					"ver": '1.0',	//固定值
 					"mobile": phone.toString(),
-					"channel": '2039058001',
-					"imsi": '460030870900577',
-					"imei": '354779069340660',
-					"phoneModel": 'MI+4LTE',
-					"apName": '%E8%A5%BF%E9%83%A8%E4%BF%A1%E4%BA%A7',
-					"appName": '%E6%96%97%E5%9C%B0%E4%B8%BB',
-					"chargeName": '10%E5%80%8D%E5%8D%A1',
-					"price": 1000,
-					"chargeType": 2,
+					"channel": '2039058001',	//测试渠道号，deploy后重置
+					"imsi": '460030870900577',	//固定值
+					"imei": '354779069340660',	//固定值
+					"phoneModel": 'MI+4LTE',	//固定值
+					"apName": 'xibuxinchan',	//固定值
+					"appName": 'doudizhu',	//固定值
+					"chargeName": '10beika',	//固定值
+					"price": 1000,	//测试值，deploy后重置
+					"chargeType": 2,	//固定值
 					"timestamp":  new Date().getTime(),
-					"orderId": '1475031941652', // 来自跳转页面url的参数：a_oId或clickid
-					"sig": 'test'
+					"orderId": orderId,
+					// "orderId": '1475031941652', //暂时传固定值，之后传orderId：来自跳转页面url的参数：a_oId 或 clickid
+					"sig": 'test'	//固定值
 				}
 				$.ajax({
 					url: baseUrl + '/HttpAPI',
