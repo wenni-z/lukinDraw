@@ -1,3 +1,6 @@
+body{
+	margin: 0;
+}
 .header {
     position: relative;
     width: 100%;
@@ -9,13 +12,13 @@
 }
 .header-bg {
     position: absolute;
-    bottom: 0;
-    left: 15px;
-    width: 360px;
-    height: 127px;
-    background-image: url('../resources/img/header.png');
+    bottom: 9px;
+    left: 12px;
+    width: 358px;
+    height: 123px;
+    background-image: url('../resources/img/header-all.png');
     background-position: 0% 0%;
-    /* background-size: 100%; */
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -25,17 +28,18 @@
     padding: 0px 15px 81px 15px;
     box-sizing: border-box;
     overflow: scroll;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 25px;
 }
 .rights_box {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+	width: 45vw;
+	height: 21vw;
 }
-
 .rights_icon {
-    width: 169px;
-    height: 79px;
+    width: 45vw;
+    height: 21vw;
     background-color: #fff;
     box-shadow: 1px 1px 6px 0px rgb(58 64 89 / 16%);
     border-radius: 15px;
@@ -44,6 +48,20 @@
     justify-content: center;
     align-items: center;
     background-image: url('../resources/img/rights-bg.png');
+    background-size: 100% 100%;
+}
+.active {
+	width: 45vw;
+	height: 21vw;
+    /* height: 76px; */
+    background-color: #fff;
+    border-radius: 15px;
+    border: solid 1px #f2f2f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	box-shadow: none;
+    background-image: url('../resources/img/rights-selected.png');
     background-size: 100% 100%;
 }
 .rights_icon div {
@@ -59,14 +77,13 @@
     height: 82px;
     background-color: #f9ebe0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 14px;
     box-sizing: border-box;
 }
 .footer .exchange_btn {
     position: fixed;
-    left: 60px;
     width: 270px;
     height: 56px;
     background-image: linear-gradient(0deg,#fd8000,#f79b18),linear-gradient(#47a89b,#47a89b);
