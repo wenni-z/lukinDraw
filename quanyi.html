@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员兑换中心</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="css/quanyi.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-bg"></div>
+    </div>
+
+    <div class="content">
+        <div class="rights_box">
+            <div class="rights_icon" id="0002">
+                <div style="background-image: url('resources/img/yun-aiqiyi.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0008">
+                <div style="background-image: url('resources/img/yun-keep.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0005">
+                <div style="background-image: url('resources/img/yun-lanren.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0004">
+                <div style="background-image: url('resources/img/yun-mango.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0001">
+                <div style="background-image: url('resources/img/yun-tengxun.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0007">
+                <div style="background-image: url('resources/img/yun-wangyi.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0006">
+                <div style="background-image: url('resources/img/yun-ximalaya.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+
+        <div class="rights_box">
+            <div class="rights_icon" id="0003">
+                <div style="background-image: url('resources/img/yun-youku.png'); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="exchange_btn">确认兑换</div>
+    </div>
+
+</body>
+<script>
+    // 适配三个步骤:
+    // 1.获取html的宽,
+    var htmlwidth = document.documentElement.clientWidth || document.body
+        .clientWidth; //有些浏览器documentElement获取不到,那就使用后面的body
+    // 2.htmlDom
+    let htmlDom = document.getElementsByTagName("html")[0];
+    //3.设置根元素样式
+    htmlDom.style.fontSize = htmlwidth / 16 + 'px';
+</script>
+<script>
+    //jq入口函数
+    $(document).ready(function() {
+        var baseUrl = 'http://59.110.112.96:8002'
+
+        //获取手机号码
+        //TO-DO:怎么从上一个页面（index.html）传过来？？
+        var phone
+        //获取福利产品对应编号
+        var productId;  
+        
+        //TO-DO: 获取所选权益的 id 赋给 productId 
+
+        //提交验证码订购
+        $('.exchange_btn').click(function() {
+            if (phone == undefined || phone == null || phone == '' || phone == 'null' || phone == 'undefined') {
+                alert("您还不是天翼云游戏会员,请先返回订购");
+                return;
+            }
+            if (productId == undefined || productId == null || productId == '' || productId == 'null' || productId == 'undefined') {
+                alert("请选择想要兑换的产品");
+                return;
+            } 
+
+            $(".tan_box").show();
+            let obj = {
+                "mobile": phone.toString(),
+                "productId": productId
+            }
+            $.ajax({
+                url: baseUrl + '/', //TO-DO 接口待定
+                type: 'get',
+                dataType: 'json',
+                data: obj,
+                contentType: "application/x-www-form-urlencoded",
+                async: true,
+                success: function(res) {
+                    //TO-DO 返回值待定
+                    if (res.resultCode == 0) {
+                        pid = res.pid
+                    } else {
+                        $(".tan_box").hide();
+                        $('.layout').find('input').each(function() {
+                            this.value = ''
+                        })
+                        alert(res.resultDesc)
+                    }
+                },
+                error: function(err) {
+                    $(".tan_box").hide();
+                    alert("网络异常")
+                }
+            });
+        }); 
+
+    });
+</script>
+</html>
