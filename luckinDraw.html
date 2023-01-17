@@ -31,7 +31,6 @@
 		<div class="layout">
 			<div class="hdgz_bnt" onclick="$('.product_info_box').show()"></div>
 			<div class="index_img">
-				<!-- <img src="https://down.quwin.cn/cl/v2.7.1/index_img.gif" onload="imgLoaded()"/> -->
 				<img src="resources/cl/v2.7.1/index_img.gif" onload="imgLoaded()"/>
 				<div class="checkbox gif_gf">天翼云游戏业务资费：19.9元/元起</div>
 			</div>
@@ -391,7 +390,6 @@
 					// contentType: "application/json; charset=utf-8",
 					async: true,
 					success: function(res) {
-						sessionStorage.setItem('phone', phone)
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
