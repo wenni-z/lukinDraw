@@ -74,39 +74,50 @@ body{
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 82px;
+    height: 4.3rem;
     background-color: #f9ebe0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-evenly;
     padding: 0 14px;
     box-sizing: border-box;
 }
-.footer .exchange_btn {
+.footer .exchange_btn,.prize {
     margin: 0 0 0 auto;
 	width: 40%;
-	height: 2.1rem;
+	height: 2rem;
     background-image: linear-gradient(0deg,#fd8000,#f79b18),linear-gradient(#47a89b,#47a89b);
     background-blend-mode: normal,normal;
     box-shadow: 1px 2px 2px 0px rgb(117 53 1 / 34%);
     border-radius: 28px;
     color: #faf6f2;
     font-size: 21px;
-    text-align: center;
-    line-height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 } 
 
-.input_box {
+.num_input {
 	margin: 0 auto 0 0;
 	width: 55%;
-	height: 2.1rem;
-	background-image: url('../resources/cl/v2.6.7/input_bg.png');
+	height: 2rem;
+	background-image: url('../resources/img/input_bg.png');
 	border-radius: 2rem;
 	background-size: 100% 100%;
 	background-color: #FFF;
 }
 
-.input_box input {
+.account_input {
+	margin: 0 auto 0 0;
+	width: 55%;
+	height: 2rem;
+    background: url(../resources/img/account.png) 0.5rem / 1.2rem no-repeat;
+	border-radius: 2rem;
+	background-color: #FFF;
+}
+
+.footer input {
 	display: block;
 	margin: 0 0 auto auto;
 	width: 85%;

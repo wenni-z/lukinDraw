@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>享15G流量领180元福利</title>
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/indexFormal.css">
 		<!-- <script src="https://down.quwin.cn/static/jquery-3.2.1.min.js"></script>
 		<script src="https://down.quwin.cn/static/fingerprint.js"></script>
 		<script src="https://down.quwin.cn/static/md5.js"></script>
@@ -90,23 +90,37 @@
 					<div class="kf_foot_box" >客服热线：4006163810</div>
 				</div>
 			</div>
+			
 			<div class="tan_box" style="display: none;">
-				<div class="sms_input">
-					<div class="space"></div>
-					<div class="code_input">
-						<input type="number" placeholder="请输入短信验证码" id="smsCode_input" name="smsCode_input"
-							class="smsCode_input">
+				<div class="bg_box">
+					<img src="resources/cl/dx_icon_1.png" alt="dianxin icon">
+					<div class="dg_box">
+						<div class="ty_info">
+							话费支付
+							<img src="resources/cl/ty-icon.png" alt="天翼云游戏">
+							￥19.9元/月
+						</div>
+						<p>
+							计费名称：天翼云游戏19.9元包月<br>
+							权益内容：云游戏时长13小时/月+互联网会员权益<br>
+						</p>	
+
+						<div class="yzm_box">
+							<div class="btn_yzm1"></div>
+							<input type="text" class="code_input1" placeholder="请输入图形验证码">
+						</div>
+						<div class="yzm_box">
+							<div class="btn_yzm2">发送验证码</div>
+							<input type="number" class="code_input2" placeholder="请输入手机验证码">
+						</div>
+						<div id="phone" style="font-family:Comic Sans MS; background-color:rgba(255,255,255,.4)"></div>
+						<div class="btn_new">确认生效</div>
+						温馨提示：本次订购的产品每月需扣除电话话费19.9元，如有需退订请联系4006163810或前往各大营业厅
 					</div>
-					<div class="btn_new"></div>
-					<div class="mh_box">
-						<div class="checkbox">天翼云游戏业务资费：19.9元/元起</div>
-						<input id="color-input-red" disabled="disabled" class="chat-button-location-radio-input"
-							checked="checked" type="checkbox" name="color-input-red" value="#f0544d" />
-						<span>提交就视为阅读并同意<a href="javascript:$('.product_info_box_2').show()">个人信息授权与保护声明</a></span>
-					</div>
-					<div class="sms_input_close" onclick="$('.tan_box').hide();">X</div>
+					<div class="clock_btn1">×</div> -->
 				</div>
 			</div>
+
 			<div class="product_info_box" style="display: none;">
 				<div class="product_info">
 					如您勾选并继续订购本产品，则视为您知悉并同意本产品须知的内容。<br>
@@ -230,15 +244,13 @@
 
 			<div class="success_box" style="display: none;">
 				<div class="succ_box">
-					<!-- <img src="https://down.quwin.cn/cl/v2.7.1/submit_success_3.png" alt=""> -->
-					<img src="resources/cl/v2.7.1/submit_success_3.png" alt="">
+					<img src="resources/cl/v2.7.1/submit_success.jpg" alt="">
 					<div class="ok"></div>
 				</div>
 			</div>
 			
 			<div class="success_box_cj" style="display: none;">
 				<div class="succ_box_cj">
-					<!-- <img src="https://down.quwin.cn/cl/v2.7.1/choujiang_loading.gif" alt=""> -->
 					<img src="resources/cl/v2.7.1/choujiang_loading.gif" alt="">
 				</div>
 			</div>
@@ -254,7 +266,7 @@
 				<div class="err_box">
 					<!-- <img src="https://down.quwin.cn/cl/v2.6.7/submit_fail.png" alt=""> -->
 					<img src="resources/cl/v2.6.7/submit_fail.png" alt="">
-					<div class="err_ok">X</div>
+					<div class="err_ok"></div>
 				</div>
 			</div>
 
@@ -350,7 +362,7 @@
 			})
 
 
-			//提交验证码订购
+			//输入手机号进入订购页面
 			$('.btn1').click(function() {
 				if (!$("#color-input-red").is(":checked")) {
 					alert("请勾选并同意活动规则及相关资费");
@@ -362,8 +374,34 @@
 					alert("请填入正确的手机号");
 					return;
 				}
-				// adPlug.ad.setPhone(phone);
 				$(".tan_box").show();
+				createCode();
+			});
+			
+			// 刷新图形验证码
+			$('.btn_yzm1').click(function() {
+				createCode();
+			});
+
+			// 获取手机验证码
+			$('.btn_yzm2').click(function() {
+				
+				phone = $("input[name='phone']").val();
+				
+				let inputCode = $('.code_input1').val();
+				console.log(inputCode);
+				if (inputCode == undefined || inputCode == null || inputCode == '' || inputCode == 'null' || inputCode == 'undefined') {
+					alert("请输入图形验证码！");
+					$("code_input1").focus();
+					return false;
+				}
+				else if (inputCode != code) {
+					alert("图形验证码输入有误！");
+					$("code_input1").text("");
+					$("code_input1").focus();
+					return false;
+				}
+	
 				let obj1 = {
 					"ipaddress": '1.192.156.201',	//固定值
 					"ver": '1.0',	//固定值
@@ -391,6 +429,9 @@
 					// contentType: "application/json; charset=utf-8",
 					async: true,
 					success: function(res) {
+						// display phone num in the page
+						$("#phone").text("验证码已发送至" + phone);
+
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
@@ -408,20 +449,19 @@
 				});
 			});
 
-
-			//订购彩铃
+			//提交验证码
 			$('.btn_new').click(function() {
-				let code = $('#smsCode_input').val()
+				let verifyCode = $('.code_input2').val()
 				if(pid==""||pid==undefined||pid==null){
 					alert('请先获取验证码');
 					return;
 				}
-				if(code==""){
+				if(verifyCode==""){
 					alert('请输入验证码')
 					return;
 				}
 				let obj2 = {
-					"verifyCode": code,
+					"verifyCode": verifyCode,
 					"pid": pid,
 					"orderFrom": '0',
 					"sig": 'test'
@@ -439,12 +479,19 @@
 							$(".tan_box").hide();
 							$('.success_box').show()
 							qw.advert.onSubmit();
+							console.log(res.resultDesc);
 							// adPlug.ad.getAd(true, phone, 'ad_success', res.resultDesc);
 						} else {
 							$(".tan_box").hide();
 							$('.error_box').show()
-							alert(res.resultDesc)
-							// adPlug.ad.getAd(true, phone, 'ad_fail', res.resultDesc);
+							let resData = res.resultDesc;
+							console.log(typeof resData);
+							console.log(resData);
+							if (resData.match("验证码")) {
+								alert(resData);
+							} else {
+								alert("很抱歉，订购失败");
+							}
 						}
 					},
 					error: function(err) {
@@ -561,6 +608,18 @@
 			function isPhoneNo(phone) {
 				var pattern = /^1[3456789]\d{9}$/;
 				return pattern.test(phone);
+			}
+
+			// 生成图形验证码
+			function createCode() {
+				code = "";
+				var codeLen = 4; // code length
+				var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+				for (var i = 0; i < codeLen; i++) {
+					var index = Math.floor(Math.random() * 10);	// get random index (0~35)
+					code += random[index]; // assign random to code
+				}
+				$(".btn_yzm1").text(code);
 			}
 
 		});

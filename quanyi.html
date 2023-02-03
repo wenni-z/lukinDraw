@@ -70,10 +70,14 @@
     </div>
 
     <div class="footer">
-        <div class="input_box">
+        <div class="num_input">
             <input type="number" placeholder="请输入您的手机号" id="phone1" name="phone" class="phone1">
         </div>
         <div class="exchange_btn">确认兑换</div>
+        <div class="account_input">
+            <input type="text" placeholder="请输入兑换账户" name="account" class="account">
+        </div>
+        <div class="prize">中奖查询</div>
     </div>
 
 </body>
@@ -90,8 +94,10 @@
 <script>
     //jq入口函数
     $(document).ready(function() {
-        var baseUrl = 'http://59.110.112.96:8002';
+        // var baseUrl = 'http://59.110.112.96:8002';
+        var baseUrl = 'https://flows.cdyylkj.com/Right';
         var phone;
+        var account = '';
 		//获取福利产品对应编号 
 		let productId = '';
 
@@ -102,7 +108,14 @@
 				}
 			})
         
-        //提交验证码订购
+        $(".account").keyup(function() {
+				var _account = $("input[name='account']").val();
+				if (_account.length >= 1) {
+					$("#color-input-red").attr("checked", true)
+				}
+			})
+
+        //选择并输入手机号兑换权益
         $('.exchange_btn').click(function() {
             if (productId == undefined || productId == null || productId == '' || productId == 'null' || productId == 'undefined') {
                 alert("请选择想要兑换的产品");
@@ -110,16 +123,24 @@
             } 
 
             phone = $("input[name='phone']").val();
+            account = $("input[name='account']").val();
+
 			let isphone = isPhoneNo(phone);
 			if (!isphone) {
 				alert("请填入正确的手机号");
 				return;
 			}
 
-            $(".tan_box").show();
+            if (account == undefined || account == null || account == '' || account == 'null' || account == 'undefined') {
+                alert("请输入想要兑换的权益用户账户");
+                return;
+            }
+
             let obj = {
                 "mobile": phone.toString(),
-                "productId": productId
+                "quanyiId": productId,
+                "rechargeAccount": account,
+                "opType": 1 // 1-权益兑换，2-中奖查询
             }
             $.ajax({
                 url: baseUrl + '/QuaiyiExchange',
@@ -132,15 +153,52 @@
                     if (res.code == 0) {
                         alert(res.msg)  //兑换成功
                     } else {
-                        $(".tan_box").hide();
-                        $('.layout').find('input').each(function() {
+                        $('.footer').find('input').each(function() {
                             this.value = ''
                         })
                         alert(res.msg)
                     }
                 },
                 error: function(err) {
-                    $(".tan_box").hide();
+                    alert("网络异常")
+                }
+            });
+        }); 
+
+        //输入手机号查询中奖
+        $('.prize').click(function() {
+            phone = $("input[name='phone']").val();
+
+			let isphone = isPhoneNo(phone);
+			if (!isphone) {
+				alert("请填入正确的手机号");
+				return;
+			}
+
+            let obj = {
+                "mobile": phone.toString(),
+                "quanyiId": productId,
+                "rechargeAccount": account,
+                "opType": 2 // 1-权益兑换，2-中奖查询
+            }
+            $.ajax({
+                url: baseUrl + '/QuaiyiExchange',
+                type: 'get',
+                dataType: 'json',
+                data: obj,
+                contentType: "application/x-www-form-urlencoded",
+                async: true,
+                success: function(res) {
+                    if (res.code == 0) {
+                        alert(res.msg)  //兑换成功
+                    } else {
+                        $('.footer').find('input').each(function() {
+                            this.value = ''
+                        })
+                        alert(res.msg)
+                    }
+                },
+                error: function(err) {
                     alert("网络异常")
                 }
             });
