@@ -5,54 +5,44 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<title>享15G流量领180元福利</title>
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/index.css">
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/md5.js"></script>
+		<link rel="stylesheet" href="css/indexNormal.css">
 		<script type="text/javascript">
 			function imgLoaded() {
 				setTimeout(function () {
-					$(".cj_gif").hide();
-					$(".phone_input").show();
+					$(".index_img").hide();
 				}, 3 * 1000)
 			}
 		</script>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<!-- <script src="js/fingerprint.js"></script> -->
+		<script src="js/md5.js"></script>
 	</head>
 
 	<body>
 		<div class="layout">
 			<div class="hdgz_bnt" onclick="$('.product_info_box').show()"></div>
-			<div class="index_img" style="display: none;">
-				<img class="cj_gif" src="resources/cl/v2.7.1/compress.gif" />
-				<div class="phone_input" style="display: none;">
+			<div class="index_img">
+				<!-- <img src="resources/cl/v2.7.1/index_img.gif" onload="imgLoaded()"/> -->
+				<img src="resources/cl/v2.7.1/compress.gif" onload="imgLoaded()" />
+				<div class="checkbox gif_gf">天翼云游戏业务资费：19.9元/元起</div>
+			</div>
+			<div class="header">
+				<div class="phone_input">
 					<div class="space"></div>
 					<div class="input_box">
 						<input type="number" placeholder="请输入您的手机号" id="phone1" name="phone" class="phone1">
 					</div>
-					<div class="code_input">
-						<div class="smscodebox">
-							<input type="number" placeholder="短信验证码" id="smsCode_input" name="smsCode_input"
-								class="smsCode_input">
-						</div>
-						<div class="yzmbtn">获取验证码</div>
-					</div>
-					<div class="btn_new"></div>
+					<div class="btn1"></div>
 					<div class="mh_box">
-						<div class="checkbox">天翼云游戏业务资费：19.9元/月起</div>
-						<input id="color-input-red" class="chat-button-location-radio-input" type="checkbox"
-							name="color-input-red" value="#f0544d" />
+						<div class="checkbox">天翼云游戏业务资费：19.9元/元起</div>
+						<input id="color-input-red" class="chat-button-location-radio-input" checked="checked"
+							type="checkbox" name="color-input-red" value="#f0544d" />
 						<span>我已阅读并了解<a href="javascript:$('.product_info_box').show()">活动规则</a>和<a
 								href="javascript:$('.product_info_box_2').show()">隐私协议</a></span>
 					</div>
-					<div class="sms_input_close">X</div>
 				</div>
-				<div class="checkbox gif_gf">天翼云游戏业务资费：19.9元/月起</div>
-			</div>
-			<div class="header"
-				style="background-image: url('resources/cl/v2.7.1/bg1-1.jpg'),url('resources/cl/v2.7.1/bg2-normal.jpg');">
-				<div class="cj_button" onclick="$('.index_img').show(); imgLoaded()"></div>
 			</div>
 			<div class="tbody">
 				<div class="product_sm">
@@ -91,12 +81,29 @@
 
 						</p>
 					</div>
+					<!-- <div class="qy_foot_box" onclick="window.location='http://mem.4gpay.net/lottery-web-page'"></div> -->
 					<div class="qy_foot_box" onclick="window.location='https://flows.cdyylkj.com/rights/quanyi.html'">
 					</div>
 					<div class="kf_foot_box">客服热线：4006163810</div>
 				</div>
 			</div>
-
+			<div class="tan_box" style="display: none;">
+				<div class="sms_input">
+					<div class="space"></div>
+					<div class="code_input">
+						<input type="number" placeholder="请输入短信验证码" id="smsCode_input" name="smsCode_input"
+							class="smsCode_input">
+					</div>
+					<div class="btn_new"></div>
+					<div class="mh_box">
+						<div class="checkbox">天翼云游戏业务资费：19.9元/元起</div>
+						<input id="color-input-red" disabled="disabled" class="chat-button-location-radio-input"
+							checked="checked" type="checkbox" name="color-input-red" value="#f0544d" />
+						<span>提交就视为阅读并同意<a href="javascript:$('.product_info_box_2').show()">个人信息授权与保护声明</a></span>
+					</div>
+					<div class="sms_input_close" onclick="$('.tan_box').hide();">X</div>
+				</div>
+			</div>
 			<div class="product_info_box" style="display: none;">
 				<div class="product_info">
 					如您勾选并继续订购本产品，则视为您知悉并同意本产品须知的内容。<br>
@@ -224,6 +231,7 @@
 
 			<div class="success_box" style="display: none;">
 				<div class="succ_box">
+					<!-- <img src="https://down.quwin.cn/cl/v2.7.1/submit_success_3.png" alt=""> -->
 					<img src="resources/cl/v2.7.1/submit_success_3.png" alt="">
 					<div class="ok"></div>
 				</div>
@@ -231,11 +239,13 @@
 
 			<div class="success_box_cj" style="display: none;">
 				<div class="succ_box_cj">
+					<!-- <img src="https://down.quwin.cn/cl/v2.7.1/choujiang_loading.gif" alt=""> -->
 					<img src="resources/cl/v2.7.1/choujiang_loading.gif" alt="">
 				</div>
 			</div>
 			<div class="success_box_cj_fail" style="display: none;">
 				<div class="succ_box_cj_fail">
+					<!-- <img src="https://down.quwin.cn/cl/v2.7.1/choujian_fail.png" alt=""> -->
 					<img src="resources/cl/v2.7.1/choujian_fail.png" alt="">
 					<div class="ok_cj_fail" onclick="$('.success_box_cj_fail').hide()"></div>
 				</div>
@@ -243,6 +253,7 @@
 
 			<div class="error_box" style="display: none;">
 				<div class="err_box">
+					<!-- <img src="https://down.quwin.cn/cl/v2.6.7/submit_fail.png" alt=""> -->
 					<img src="resources/cl/v2.6.7/submit_fail.png" alt="">
 					<div class="err_ok">X</div>
 				</div>
@@ -288,6 +299,29 @@
 				resUrl = 'https://color.quwin.cn/inter/qiyin'
 			}
 
+			// 获取planID
+			// var planId = getUrlParam('qwplid') || '1000'
+			// localStorage.setItem('planId', planId)
+			// var uid = new Fingerprint({
+			// 	canvas: true
+			// }).get();
+			// localStorage.setItem('uid', uid)
+
+			//获取页脚设置
+			// getPageSetting(planId)
+			// pageNum = 1;
+
+			// function getPageSetting(planId) {
+			// 	$.get(baseUrl + "/getPageSetting", {
+			// 		'planId': planId
+			// 	}, function(res) {
+			// 		if (res.status == 1) {
+			// 			$('body').append(res.web_footer)
+			// 			$('.checkbox').css('opacity', res.fee_tip)
+			// 		}
+			// 	});
+			// }
+
 			//自动获取地址栏链接带？以及后面的字符串
 			var queryString = window.location.search;
 			localStorage.setItem('queryString', queryString)
@@ -313,60 +347,28 @@
 			var channelId = '';
 			channelId = getUrlParam('channelid');
 
-			// 获取ua
-			var userAgent = navigator.userAgent;
-			console.log(userAgent);
-
-			//输入手机号自动勾选默认条款，并请求验证码
 			$(".phone1").keyup(function () {
-				phone = $("input[name='phone']").val();
-				let isphone = isPhoneNo(phone);
-				if (isphone) {
+				var _phone = $("input[name='phone']").val();
+				if (_phone.length >= 11) {
 					$("#color-input-red").attr("checked", true)
-					requestCode();
-				}
-			})
-
-			$('.yzmbtn').click(function () {
-				if (!$("#color-input-red").is(":checked")) {
-					alert("请勾选并同意活动规则及相关资费");
-					return;
-				}
-
-				phone = $("input[name='phone']").val();
-				let isphone = isPhoneNo(phone);
-				if (isphone) {
-					$("#color-input-red").attr("checked", true)
-					requestCode();
-				}
-				else {
-					alert("请填入正确的手机号");
-					return;
 				}
 			})
 
 
-			//获取验证码
-			function requestCode() {
-				// get value for 'disable' attr of .yzmbtn
-				var disabled = $(".yzmbtn").attr("disabled");
-				if (disabled) {
-					return false;
-				}
-
+			//提交验证码订购
+			$('.btn1').click(function () {
 				if (!$("#color-input-red").is(":checked")) {
 					alert("请勾选并同意活动规则及相关资费");
 					return;
 				}
-
+				phone = $("input[name='phone']").val();
 				let isphone = isPhoneNo(phone);
 				if (!isphone) {
 					alert("请填入正确的手机号");
 					return;
 				}
-
-				settime();	//start countdown for sms code
-
+				// adPlug.ad.setPhone(phone);
+				$(".tan_box").show();
 				let obj1 = {
 					// "ipaddress": '1.192.156.201',	//固定值
 					"ipaddress": window.ipAddress,
@@ -385,8 +387,7 @@
 					"timestamp": new Date().getTime(),
 					"orderId": orderId,
 					// "orderId": '1475031941652', //暂时传固定值，之后传orderId：来自跳转页面url的参数：a_oId 或 clickid
-					"sig": 'test',	//固定值
-					"ua": userAgent
+					"sig": 'test'	//固定值
 				}
 				$.ajax({
 					url: baseUrl + '/HttpAPI',
@@ -400,32 +401,22 @@
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
-							// $('.layout').find('input').each(function () {
-							// 	this.value = ''
-							// })
-							// Cancel the countdown
-							_getCode.attr("disabled", false);
-							_getCode.text("获取验证码");
-							countdown = 60;
-							clearTimeout(clock);
-							alert(res.resultDesc);
-							// Re-direct when order fail
-							window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
+							$(".tan_box").hide();
+							$('.layout').find('input').each(function () {
+								this.value = ''
+							})
+							alert(res.resultDesc)
 						}
 					},
 					error: function (err) {
-						alert("网络异常");
-						// Cancel the countdown
-						_getCode.attr("disabled", false);
-						_getCode.text("获取验证码");
-						countdown = 60;
-						clearTimeout(clock);
+						$(".tan_box").hide();
+						alert("网络异常")
 					}
 				});
-			};
+			});
 
 
-			//提交验证码订购彩铃
+			//订购彩铃
 			$('.btn_new').click(function () {
 				let code = $('#smsCode_input').val()
 				if (pid == "" || pid == undefined || pid == null) {
@@ -452,14 +443,15 @@
 						console.log(typeof res);	//String
 						res = eval("(" + res + ")");	//transform to object
 						if (res.resultCode == 0) {
-							$(".index_img").hide();
-							$('.success_box').show();
+							$(".tan_box").hide();
+							$('.success_box').show()
+							qw.advert.onSubmit();
+							// adPlug.ad.getAd(true, phone, 'ad_success', res.resultDesc);
 						} else {
-							// $(".index_img").hide();
-							// $('.error_box').show();
-							alert(res.resultDesc);
-							// Re-direct when order fail
-							window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
+							$(".tan_box").hide();
+							$('.error_box').show()
+							alert(res.resultDesc)
+							// adPlug.ad.getAd(true, phone, 'ad_fail', res.resultDesc);
 						}
 					},
 					error: function (err) {
@@ -467,11 +459,6 @@
 					}
 				})
 
-			})
-
-			// Re-direct when click close
-			$('.sms_input_close').click(function () {
-				window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
 			})
 
 
@@ -542,7 +529,7 @@
 
 
 			$('.ok').click(function () {
-				// $('.tan_box').hide()
+				$('.tan_box').hide()
 				$('.phone_box').hide()
 				$('.success_box').hide()
 				$('.layout').find('input').each(function () {
@@ -555,7 +542,7 @@
 				}, 1500)
 			})
 			$('.err_ok').click(function () {
-				// $('.tan_box').hide()
+				$('.tan_box').hide()
 				$('.phone_box').hide()
 				$('.error_box').hide()
 				$('.layout').find('input').each(function () {
@@ -582,42 +569,6 @@
 				var pattern = /^1[3456789]\d{9}$/;
 				return pattern.test(phone);
 			}
-
-			var countdown = 60;	// re-get is available after 60s 
-			var _getCode = $(".yzmbtn");
-			var clock;
-			/* func: set countdown */
-			function settime() {
-				if (countdown == 0) {
-					_getCode.attr("disabled", false);
-					_getCode.text("获取验证码");
-					countdown = 60;
-					return false;
-				} else {
-					$(".yzmbtn").attr("disabled", true);
-					_getCode.text(countdown + "s获取");
-					countdown--;
-				}
-				clock = setTimeout(function () {
-					settime();
-				}, 1000);
-			}
-
-			// physical back event
-			if (window.history && window.history.pushState) {
-				console.log(document.URL);
-				//向历史记录中插入当前页
-				history.pushState(null, null, document.URL);
-				//添加popstate监听
-				window.addEventListener("popstate", goBack, false);
-				// window.removeEventListener("popstate", goBack, false);
-			}
-
-			function goBack() {
-				console.log("state change");
-				window.location.href = "https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58";
-			}
-
 
 		});
 	</script>

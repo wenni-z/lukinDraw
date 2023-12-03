@@ -5,7 +5,6 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<title>享15G流量领180元福利</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/index.css">
@@ -34,24 +33,23 @@
 					<div class="code_input">
 						<div class="smscodebox">
 							<input type="number" placeholder="短信验证码" id="smsCode_input" name="smsCode_input"
-								class="smsCode_input">
+							class="smsCode_input">
 						</div>
 						<div class="yzmbtn">获取验证码</div>
 					</div>
 					<div class="btn_new"></div>
 					<div class="mh_box">
 						<div class="checkbox">天翼云游戏业务资费：19.9元/月起</div>
-						<input id="color-input-red" class="chat-button-location-radio-input" type="checkbox"
-							name="color-input-red" value="#f0544d" />
+						<input id="color-input-red" class="chat-button-location-radio-input"
+							type="checkbox" name="color-input-red" value="#f0544d" />
 						<span>我已阅读并了解<a href="javascript:$('.product_info_box').show()">活动规则</a>和<a
-								href="javascript:$('.product_info_box_2').show()">隐私协议</a></span>
+								href="javascript:$('.product_info_box_2').show()">隐私协议</a></span>		
 					</div>
-					<div class="sms_input_close">X</div>
+					<div class="sms_input_close" onclick="$('.index_img').hide();">X</div>
 				</div>
 				<div class="checkbox gif_gf">天翼云游戏业务资费：19.9元/月起</div>
 			</div>
-			<div class="header"
-				style="background-image: url('resources/cl/v2.7.1/bg1-1.jpg'),url('resources/cl/v2.7.1/bg2-normal.jpg');">
+			<div class="header">
 				<div class="cj_button" onclick="$('.index_img').show(); imgLoaded()"></div>
 			</div>
 			<div class="tbody">
@@ -96,7 +94,7 @@
 					<div class="kf_foot_box">客服热线：4006163810</div>
 				</div>
 			</div>
-
+			
 			<div class="product_info_box" style="display: none;">
 				<div class="product_info">
 					如您勾选并继续订购本产品，则视为您知悉并同意本产品须知的内容。<br>
@@ -313,41 +311,17 @@
 			var channelId = '';
 			channelId = getUrlParam('channelid');
 
-			// 获取ua
-			var userAgent = navigator.userAgent;
-			console.log(userAgent);
-
-			//输入手机号自动勾选默认条款，并请求验证码
-			$(".phone1").keyup(function () {
-				phone = $("input[name='phone']").val();
-				let isphone = isPhoneNo(phone);
-				if (isphone) {
-					$("#color-input-red").attr("checked", true)
-					requestCode();
-				}
-			})
-
-			$('.yzmbtn').click(function () {
-				if (!$("#color-input-red").is(":checked")) {
-					alert("请勾选并同意活动规则及相关资费");
-					return;
-				}
-
-				phone = $("input[name='phone']").val();
-				let isphone = isPhoneNo(phone);
-				if (isphone) {
-					$("#color-input-red").attr("checked", true)
-					requestCode();
-				}
-				else {
-					alert("请填入正确的手机号");
-					return;
-				}
-			})
+			//取消输入手机号自动勾选默认条款
+			// $(".phone1").keyup(function () {
+			// 	var _phone = $("input[name='phone']").val();
+			// 	if (_phone.length >= 11) {
+			// 		$("#color-input-red").attr("checked", true)
+			// 	}
+			// })
 
 
 			//获取验证码
-			function requestCode() {
+			$('.yzmbtn').click(function () {
 				// get value for 'disable' attr of .yzmbtn
 				var disabled = $(".yzmbtn").attr("disabled");
 				if (disabled) {
@@ -358,7 +332,7 @@
 					alert("请勾选并同意活动规则及相关资费");
 					return;
 				}
-
+				phone = $("input[name='phone']").val();
 				let isphone = isPhoneNo(phone);
 				if (!isphone) {
 					alert("请填入正确的手机号");
@@ -366,7 +340,7 @@
 				}
 
 				settime();	//start countdown for sms code
-
+				
 				let obj1 = {
 					// "ipaddress": '1.192.156.201',	//固定值
 					"ipaddress": window.ipAddress,
@@ -385,8 +359,7 @@
 					"timestamp": new Date().getTime(),
 					"orderId": orderId,
 					// "orderId": '1475031941652', //暂时传固定值，之后传orderId：来自跳转页面url的参数：a_oId 或 clickid
-					"sig": 'test',	//固定值
-					"ua": userAgent
+					"sig": 'test'	//固定值
 				}
 				$.ajax({
 					url: baseUrl + '/HttpAPI',
@@ -400,29 +373,17 @@
 						if (res.resultCode == 0) {
 							pid = res.pid
 						} else {
-							// $('.layout').find('input').each(function () {
-							// 	this.value = ''
-							// })
-							// Cancel the countdown
-							_getCode.attr("disabled", false);
-							_getCode.text("获取验证码");
-							countdown = 60;
-							clearTimeout(clock);
-							alert(res.resultDesc);
-							// Re-direct when order fail
-							window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
+							$('.layout').find('input').each(function () {
+								this.value = ''
+							})
+							alert(res.resultDesc)
 						}
 					},
 					error: function (err) {
-						alert("网络异常");
-						// Cancel the countdown
-						_getCode.attr("disabled", false);
-						_getCode.text("获取验证码");
-						countdown = 60;
-						clearTimeout(clock);
+						alert("网络异常")
 					}
 				});
-			};
+			});
 
 
 			//提交验证码订购彩铃
@@ -454,12 +415,13 @@
 						if (res.resultCode == 0) {
 							$(".index_img").hide();
 							$('.success_box').show();
+							qw.advert.onSubmit();
+							// adPlug.ad.getAd(true, phone, 'ad_success', res.resultDesc);
 						} else {
-							// $(".index_img").hide();
-							// $('.error_box').show();
-							alert(res.resultDesc);
-							// Re-direct when order fail
-							window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
+							$(".index_img").hide();
+							$('.error_box').show();
+							alert(res.resultDesc)
+							// adPlug.ad.getAd(true, phone, 'ad_fail', res.resultDesc);
 						}
 					},
 					error: function (err) {
@@ -467,11 +429,6 @@
 					}
 				})
 
-			})
-
-			// Re-direct when click close
-			$('.sms_input_close').click(function () {
-				window.location.href = 'https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58';
 			})
 
 
@@ -585,7 +542,6 @@
 
 			var countdown = 60;	// re-get is available after 60s 
 			var _getCode = $(".yzmbtn");
-			var clock;
 			/* func: set countdown */
 			function settime() {
 				if (countdown == 0) {
@@ -598,26 +554,10 @@
 					_getCode.text(countdown + "s获取");
 					countdown--;
 				}
-				clock = setTimeout(function () {
+				setTimeout(function () {
 					settime();
 				}, 1000);
 			}
-
-			// physical back event
-			if (window.history && window.history.pushState) {
-				console.log(document.URL);
-				//向历史记录中插入当前页
-				history.pushState(null, null, document.URL);
-				//添加popstate监听
-				window.addEventListener("popstate", goBack, false);
-				// window.removeEventListener("popstate", goBack, false);
-			}
-
-			function goBack() {
-				console.log("state change");
-				window.location.href = "https://yl.qsyy.com/theater/spread/miniAppRedirect?spread_id=646ec171c73680735f357a58";
-			}
-
 
 		});
 	</script>
